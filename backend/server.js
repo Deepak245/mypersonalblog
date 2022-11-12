@@ -1,20 +1,28 @@
 import express from "express";
-import dotenv from "dotenv";
+import dotEnv from "dotenv";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+dotEnv.config();
 
-dotenv.config();
-dotenv.config({path:"backend/config.env"}); 
 const app = express();
 
-// routers import
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
+app.use(express.static(path.resolve(__dirname,"../frontend/build")));
+
+
+// routers import
 import authRouter from "./routes/authRoutes.js";
 import postRouter from "./routes/postRoutes.js";
 
-app.get("/", (req, res) => {
-  res.send("Server Spinned up....");
-});
+
+// app.get("/", (req, res) => {
+//   res.send("Server Spinned up....");
+// });
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,11 +30,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/post", postRouter);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname,"../frontend/build","index.html"))
+ });
 // if(process.env.NODE_ENV==='PRODUCTION'){
-//     app.use(express.static(path.join(__dirname,'../')))
-// }
-const port = process.env.PORT;
+    // app.use(express.static(module.join(__dirname,'../frontend/build')))
 
+    // app.get('*',(req,res)=>{
+    //   res.send(module.resolve(__dirname,'../frontend/build/index.html'))
+    // })
+// }
+
+const port = process.env.PORT || 5000 ;
+// console.log(process.env.MONGO_URL)
 const start = async () => {
   try {
     // console.log(process.env.MONGO_URL)
