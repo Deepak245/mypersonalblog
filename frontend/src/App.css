@@ -1,0 +1,139 @@
+html,
+body {
+  font-family: 'Roboto Serif', serif;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+/* .translatebutton{
+ 
+	width: 200px;
+	height: 30px;
+} */
+
+/* .template_menu_panel{
+  width:100%;
+  margin:0 auto;
+  background-color: #0c0600;
+  color: #FFFFFF;
+  height: 50px;
+} */
+
+.template_menu_panel{
+  width: 1000px;
+  height: 30px;
+  margin: 0 auto;
+  padding: 0;
+  border:1px solid blue;
+  
+   display: block;
+}
+.template_menu_section{
+  width: 1000px;
+  height: 30px;
+  margin:0 auto;
+  padding:0;
+  color:#03a0a6;
+  border-radius:10%;
+}
+
+.template_menu_section ul{
+  
+  width: 1000px;
+	margin:0 auto;
+  padding:0 0 0 30px;
+	list-style: none;
+  background:linear-gradient(to bottom, #02599C 0%, #0463a3 100%);
+}
+
+.template_menu_section ul li{
+  display:inline;
+}
+
+.template_menu_section ul button{
+  display:inline-flexbox;
+  align-items: right;
+  width: 200px;
+	margin: 0;
+	padding: 0 0 0 0;
+	list-style: none;
+}
+
+.template_menu_section ul li a{
+	float: left;
+	width: 110px;
+	padding: 5px 0;
+	margin-right: 5px;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	border-left: 1px solid #fff;
+}
+
+.main_body_container{
+ 
+  width: 1000px;
+  height: 500px;
+  margin: 0 auto;
+  padding: 0;
+  
+  background: #fff;
+  border: 1px solid #9c2602;
+}
+
+
+.btn{
+  background-color: #706f2c;
+border-color: #fa9c23;
+color: white;
+margin-top: 2.5rem;
+}
+
+.btn_create{
+  position: absolute;
+  right:500px;
+  top:1px;
+background-color: #757ce0;
+border-color: #fa9c23;
+color: white;
+margin-top: 2rem;
+}
+
+.content-post{
+  width: 1000px;
+  height: 35px;
+  margin: 0 0 10px;
+  padding: 0;
+  border:1px solid blue;
+  
+   display: block;
+}
+
+
+.content-post2{
+  width: 1000px;
+  height: 20px;
+  padding: 0 0 3px;
+  margin: 10px 0 0;
+  /* border:1px solid blue; */
+  /* border-top: 1px solid blue; */
+  border-bottom: 1px solid #ecebeabd;
+  text-align:start;
+   display: block;
+  
+}
+
+.loader {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+  width: 80px;
+  height: 80px;
+  padding-left: 0;
+}
