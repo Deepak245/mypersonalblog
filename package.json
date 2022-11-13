@@ -5,12 +5,11 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "setup-production":"npm run install-client && npm run build-client && npm install",
+    "setup-production": "npm run install-client && npm run build-client && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon backend/server.js",
-    "build-client":"cd frontend && npm run build",
-    "install-client":"cd frontend && npm install"
-    
+    "build-client": "cd frontend && npm run build",
+    "install-client": "cd frontend && npm install"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +20,11 @@
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.6.0",
+    "helmet": "^6.0.0",
     "http-status-codes": "^2.2.0",
-    "mongoose": "^6.7.0"
+    "mongoose": "^6.7.0",
+    "xss-clean": "^0.1.1"
   }
 }

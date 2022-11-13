@@ -4,42 +4,44 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-dotEnv.config();
-
-const app = express();
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
-app.use(express.static(path.resolve(__dirname,"../frontend/build")));
-
 
 // routers import
 import authRouter from "./routes/authRoutes.js";
 import postRouter from "./routes/postRoutes.js";
 
+import helmet from 'helmet';
+import xss from 'xss-clean';
+import mongoSanitizer from "express-mongo-sanitize";
 
-// app.get("/", (req, res) => {
-//   res.send("Server Spinned up....");
-// });
+dotEnv.config();
+// dotEnv.config({path:"backend/.env"})      // comment it before going to prod
+const app = express();
+
+// un comment it before going to prod
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+app.use(express.static(path.resolve(__dirname,"../frontend/build")));
+
+
+
+
 
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitizer());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/post", postRouter);
 
+// un comment it before going to prod.
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname,"../frontend/build","index.html"))
  });
-// if(process.env.NODE_ENV==='PRODUCTION'){
-    // app.use(express.static(module.join(__dirname,'../frontend/build')))
 
-    // app.get('*',(req,res)=>{
-    //   res.send(module.resolve(__dirname,'../frontend/build/index.html'))
-    // })
-// }
 
 const port = process.env.PORT || 5000 ;
 // console.log(process.env.MONGO_URL)
