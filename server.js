@@ -6,21 +6,24 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
 // routers import
-import authRouter from "./routes/authRoutes.js";
-import postRouter from "./routes/postRoutes.js";
+import authRouter from "./backend/routes/authRoutes.js";
+import postRouter from "./backend/routes/postRoutes.js";
+
+
 
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import mongoSanitizer from "express-mongo-sanitize";
 
-dotEnv.config();
-// dotEnv.config({path:"backend/.env"})      // comment it before going to prod
+// dotEnv.config();
+dotEnv.config({path:"backend/.env"})      // comment it before going to prod
 const app = express();
 
 // un comment it before going to prod
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-app.use(express.static(path.resolve(__dirname,"../frontend/build")));
+// app.use(express.static(path.resolve(__dirname,"../frontend/build")));
+app.use(express.static(path.resolve(__dirname,"./frontend/build")));
 
 
 
@@ -39,7 +42,8 @@ app.use("/api/v1/post", postRouter);
 
 // un comment it before going to prod.
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname,"../frontend/build","index.html"))
+  // res.sendFile(path.resolve(__dirname,"../frontend/build","index.html"))
+  res.sendFile(path.resolve(__dirname,"./frontend/build","index.html"))
  });
 
 
