@@ -48,7 +48,7 @@ app.use("/api/v1/post", postRouter);
 
 if(process.env.ENV === "PROD"){
 // un comment it before going to prod.
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   // res.sendFile(path.resolve(__dirname,"../frontend/build","index.html"))
   res.sendFile(path.resolve(__dirname,"./frontend/build","index.html"))
  });
