@@ -9,11 +9,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   letsThinkDetailsReducer,
   getPostDetailsReducer,
+  updateLikesReducer
 } from "./Reducers/letsThinkReducer";
 
 const reducer = combineReducers({
   postDetails: letsThinkDetailsReducer,
   singlePostDetails: getPostDetailsReducer,
+  likesDetails:updateLikesReducer
 });
 const middleWare = [thunk];
 

@@ -3,6 +3,8 @@ import {
   ALL_BLOGDETAILS_SUCCESS,
   SINGLE_POST_DETAILS_REQUEST,
   SINGLE_POST_DETAILS_SUCCESS,
+  UPDATE_POST_LIKE_REQUEST,
+  UPDATE_POST_LIKE_SUCCESS
 } from "../Constants/letsThinkConstants";
 import axios from "axios";
 
@@ -25,6 +27,19 @@ export const getPostDetails = (id) => async (dispatch) => {
     const { data } = await axios.get(`/api/v1/post/blogdetails/${id}`);
     // console.log(data);
     dispatch({ type: SINGLE_POST_DETAILS_SUCCESS, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateLikesCount = (id,action) => async (dispatch) => {
+  // console.log(id);
+  // console.log(action);
+  try {
+    dispatch({ type: UPDATE_POST_LIKE_REQUEST });
+    const { data } = await axios.post(`/api/v1/post/blogdetails/${id}/${action}`);
+    // console.log(data);
+    dispatch({ type: UPDATE_POST_LIKE_SUCCESS, payload: data });
   } catch (error) {
     console.log(error);
   }
