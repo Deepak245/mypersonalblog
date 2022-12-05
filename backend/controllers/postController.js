@@ -31,4 +31,25 @@ const getSinglePost = async (req, res) => {
   });
 };
 
-export { postTopic, getAllBlogPost, getSinglePost };
+const updatePostLikes = async (req,res)=>{
+  
+  const action = req.params.act;
+ 
+  
+  // console.log(postData)
+  if(action ==='like'){
+    
+    await Post.updateOne({_id:req.params.id},{$inc:{postLiked:'1'}});
+    
+  }else if(action ==='dislike'){
+    await Post.updateOne({_id:req.params.id},{$inc:{postDisLiked:'1'}});
+  }
+  const postData = await Post.findOne({ _id: req.params.id });
+  
+  res.status(StatusCodes.OK).json({
+    postData: postData,
+  });
+}
+
+
+export { postTopic, getAllBlogPost, getSinglePost,updatePostLikes };

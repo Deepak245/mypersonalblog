@@ -12,6 +12,16 @@ const PostSchema = new mongoose.Schema({
         required:[true,"Provide Content to Post"],
         trim:true
     },
+    postLiked:{
+        type:Number,
+        trim:true,
+        default:0
+    },
+    postDisLiked:{
+        type:Number,
+        trim:true,
+        default:0
+    },
     reviews:[{
         comment:{
             type:String

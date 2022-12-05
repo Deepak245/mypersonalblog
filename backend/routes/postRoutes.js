@@ -3,6 +3,8 @@ import {
   postTopic,
   getAllBlogPost,
   getSinglePost,
+  updatePostLikes,
+
 } from "../controllers/postController.js";
 import rateLimiter from "express-rate-limit";
 
@@ -15,7 +17,9 @@ const rateLimter = rateLimiter({
 const router = express.Router();
 
 router.route("/posttopic").post(postTopic);
-router.route("/blogdetails/:id").get(rateLimter,getSinglePost);
+router.route("/blogdetails/:id/:act").post(updatePostLikes);
+router.route("/blogdetails/:id").get(getSinglePost);
+
 router.route("/blogdetails").get(getAllBlogPost);
 
 export default router;
