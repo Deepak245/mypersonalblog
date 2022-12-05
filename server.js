@@ -16,7 +16,7 @@ import xss from 'xss-clean';
 import mongoSanitizer from "express-mongo-sanitize";
 
 // dotEnv.config();
-// dotEnv.config({path:"backend/.env"})      // comment it before going to prod
+dotEnv.config({path:"backend/.env"})      // comment it before going to prod
 const app = express();
 
 // un comment it before going to prod
