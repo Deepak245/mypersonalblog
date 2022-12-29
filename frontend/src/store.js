@@ -6,6 +6,8 @@ import {
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
+import {loginReducer} from "./Reducers/authReducer"
+
 import {
   letsThinkDetailsReducer,
   getPostDetailsReducer,
@@ -15,7 +17,8 @@ import {
 const reducer = combineReducers({
   postDetails: letsThinkDetailsReducer,
   singlePostDetails: getPostDetailsReducer,
-  likesDetails:updateLikesReducer
+  likesDetails:updateLikesReducer,
+  loginDetails:loginReducer
 });
 const middleWare = [thunk];
 

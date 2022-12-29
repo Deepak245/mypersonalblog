@@ -4,11 +4,15 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import "express-async-errors"
 
 // routers import
 import authRouter from "./backend/routes/authRoutes.js";
 import postRouter from "./backend/routes/postRoutes.js";
 
+// Error Import
+import "express-async-errors"
+import errorHandlerMiddleWare from "./backend/middleWare/error-handler.js";
 
 
 import helmet from 'helmet';
@@ -42,6 +46,10 @@ app.use(helmet());
 app.use(xss());
 app.use(mongoSanitizer());
 
+// app.get("/",(req,res)=>{
+//   throw new Error("error");
+// })
+
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/post", postRouter);
 
@@ -55,14 +63,14 @@ app.get("/*", (req, res) => {
 }
 
 
-
+app.use(errorHandlerMiddleWare);
 const port = process.env.PORT || 5000 ;
 // console.log(process.env.MONGO_URL)
 const start = async () => {
   try {
     // console.log(process.env.MONGO_URL)
     mongoose.connect(process.env.MONGO_URL);
-    app.listen(port, () => {
+    app.listen(port, () => {  
       console.log(`connected to db & server listening to port ${port}`);
     });
   } catch (error) {

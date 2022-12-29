@@ -7,6 +7,9 @@ import Header from "./Header";
 import Loader from "./Loader";
 import CustomeScrollBar from "./CustomeScrollBar";
 
+import {Card, CardActionArea, CardContent, Grid,Typography  } from "@mui/material";
+import {useStylesBlogDetailsPage} from "../WrapperStyles/BlogDetailStyle";
+
 // const BlogPostDetails = () => {
 //   const { id } = useParams();
 //   console.log(id);
@@ -35,6 +38,7 @@ import CustomeScrollBar from "./CustomeScrollBar";
 
 const BlogPostDetails = () => {
   // console.log(props);
+  const designCard = useStylesBlogDetailsPage();
   const { id } = useParams();
   // console.log(id);
   const dispatch = useDispatch();
@@ -53,30 +57,53 @@ const BlogPostDetails = () => {
     dispatch(updateLikesCount(id,'dislike'));
   }
   return (
-    <div>
-      <div className="main_body_container scrollveritcal scrollhorizantal">
-        <div>
-        
-        <button className="like" onClick={()=>onHandleIncreaseLike(id)}><i className="fa fa-thumbs-o-up"></i>  
-        Like <span className="qty1" name="qty1"  type="text" value="0">{Object.keys(likesPostData).length === 0?postData.postLiked:likesPostData.postLiked}</span>
-    </button>
-    <button className="dislike" onClick={()=>onHandleIncreaseDislike(id)}><i className="fa fa-thumbs-o-down"></i> 
-        Dislike <span className="qty1" name="qty1"  type="text" value="0">{Object.keys(likesPostData).length === 0?postData.postDisLiked:likesPostData.postDisLiked}</span>
-    </button>
-       
-        
-        
-        </div>
+    <Grid item xs={12} md={6} style={{ display:'flex', justifyContent:'center' }}>
       
-        <div className="content-post">
-       
-          <div className="content-post2" >
-          {postData.content}</div>
-        </div>
+        <Card >
+          <CardContent>
+          <Typography align="center" color="common.black" gutterBottom>
+            <strong>
+           {postData.title}
+            
+            </strong>
+            
+            
+           
+            
+          </Typography>
+          <Typography alignContent={"center"} className={designCard.contentFontFamily}>
+          {postData.content}
+          </Typography>
+          </CardContent>
+        
+        </Card>
+      
+    </Grid>
+    
+    //   {/* <div className="main_body_container scrollveritcal scrollhorizantal">
+    //     <div>
+        
+    //     <button className="like" onClick={()=>onHandleIncreaseLike(id)}><i className="fa fa-thumbs-o-up"></i>  
+    //     Like <span className="qty1" name="qty1"  type="text" value="0">{Object.keys(likesPostData).length === 0?postData.postLiked:likesPostData.postLiked}</span>
+    // </button>
+    // <button className="dislike" onClick={()=>onHandleIncreaseDislike(id)}><i className="fa fa-thumbs-o-down"></i> 
+    //     Dislike <span className="qty1" name="qty1"  type="text" value="0">{Object.keys(likesPostData).length === 0?postData.postDisLiked:likesPostData.postDisLiked}</span>
+    // </button>
        
         
-      </div>
-    </div>
+        
+    //     </div>
+      
+    //     <div className="content-post">
+       
+    //       <div className="content-post2" >
+    //       {postData.content}</div>
+    //     </div>
+       
+        
+    //   </div> */}
+    
+      
   );
 };
 

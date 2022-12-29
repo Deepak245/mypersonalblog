@@ -4,9 +4,29 @@ import {
   SINGLE_POST_DETAILS_REQUEST,
   SINGLE_POST_DETAILS_SUCCESS,
   UPDATE_POST_LIKE_REQUEST,
-  UPDATE_POST_LIKE_SUCCESS
+  UPDATE_POST_LIKE_SUCCESS,
+  CREATE_POST_DETAILS_REQUEST,
+  CREATE_POST_DETAILS_SUCCESS
 } from "../Constants/letsThinkConstants";
 import axios from "axios";
+
+export const createPost =(postData)=>async(dispatch)=>{
+  try {
+    console.log(postData)
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const {data} = await axios.post("/api/v1/post/posttopic",postData,config)
+    dispatch({
+      type:CREATE_POST_DETAILS_SUCCESS,
+      payload:data
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export const getAllBlogDetails = () => async (dispatch) => {
   try {

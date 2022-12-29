@@ -4,7 +4,8 @@ import {
   SINGLE_POST_DETAILS_REQUEST,
   SINGLE_POST_DETAILS_SUCCESS,
   UPDATE_POST_LIKE_REQUEST,
-  UPDATE_POST_LIKE_SUCCESS
+  UPDATE_POST_LIKE_SUCCESS,
+  CREATE_POST_DETAILS_SUCCESS
 } from "../Constants/letsThinkConstants";
 
 export const letsThinkDetailsReducer = (state = { allblogs: [] }, action) => {
@@ -22,6 +23,8 @@ export const letsThinkDetailsReducer = (state = { allblogs: [] }, action) => {
         allblogs: action.payload.alltopics,
         alltopicCount: action.payload.alltopicCount,
       };
+    case CREATE_POST_DETAILS_SUCCESS:
+      return {createdPost:action.payload}
     default:
       return state;
   }
@@ -66,3 +69,4 @@ export const updateLikesReducer = (state={likesPostData:{}},action)=>{
       return state;
   }
 }
+

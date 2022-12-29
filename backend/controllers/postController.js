@@ -15,7 +15,7 @@ const getAllBlogPost = async (req, res) => {
   let result = Post.find();
   let TotalDocumentsCount = await Post.find().count();
   const alltopics = await result;
-
+  
   res.status(StatusCodes.OK).json({
     alltopics: alltopics,
     alltopicCount: TotalDocumentsCount,

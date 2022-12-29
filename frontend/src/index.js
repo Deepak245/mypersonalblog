@@ -8,6 +8,11 @@ import store from "./store";
 
 import App from './App';
 
+import {Container} from '@mui/material';
+
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +21,9 @@ root.render(
   
   
   <Provider store={store}>
+  <Container maxWidth="lg"  >
       <App/>
+  </Container>
   </Provider>
   </React.StrictMode>
 
