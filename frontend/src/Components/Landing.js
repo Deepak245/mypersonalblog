@@ -2,9 +2,10 @@ import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import AlertComp from "./AlertComp"
 import { useDispatch, useSelector } from "react-redux";
-import {signin} from "../Actions/authAction";
+import {signin,clearAlert} from "../Actions/authAction";
 
 import {Box,Button,Typography,Modal,Grid, InputLabel,TextField, Divider} from '@mui/material';
+
 
 
 const style = {
@@ -33,17 +34,54 @@ const Landing = () => {
     
 
     const onHandleLogin=()=>{
-      dispatch(signin(email,password));
-      setOpen(false);
       
+      dispatch(signin(email,password));
+      // localStorage.setItem("user", JSON.stringify(user));
+      // console.log("isauthenticated"+isAuthenticated)
+      if(isAuthenticated){
+        setOpen(false);
       navigate("/")
+      }
+      
+     
+    }
+    const onHandleCloseError=()=>{
+        // console.log("In Close Error")
+      dispatch(clearAlert());
+
+      setOpen(false);
+      navigate("/")
+
     }
     console.log(user,error)
     console.log(showAlert)
-    return (
+    return (  
       <div>
         {/* <Button onClick={handleOpen}>Open modal</Button> */}
-        {!user?<AlertComp errordata={[alertType,error]}/>:<>
+        {showAlert?
+        <>
+            <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+               <AlertComp errordata={[alertType,error]}/>
+            </Typography>
+            <Divider variant="middle" sx={{bgcolor:'red'}}/>
+           
+            
+             <Button variant="contained" onClick={onHandleCloseError}>Close Error</Button>
+          </Box>
+          
+        </Modal>
+          
+        </>
+       
+        :
+        <>
         <Modal
           open={open}
           onClose={handleClose}

@@ -8,6 +8,7 @@ import Prefix from "./Components/Prefix";
 import AdminPurpose from "./Components/AdminPurpose";
 import SharedLayout from "./Components/SharedLayout";
 import Landing from "./Components/Landing"
+import ProtectedRoute from "./Components/ProtectedRoute"
 
 //for displaying blog post data.
 import BlogPostDetails from "./Components/BlogPostDetails";
@@ -30,7 +31,7 @@ function App() {
            <Route path="home" element={<Home />} />
           <Route index element={<LetsThink />} />
           <Route path="movie-reviews" element={<MovieReviews />} />
-          <Route path="admin" element={<AdminPurpose />} />
+          <Route path="admin" element={<ProtectedRoute><AdminPurpose /></ProtectedRoute>} />
           <Route path="/blogdetails/:id" element={<BlogPostDetails />} exact />
           <Route path="/landing" element={<Landing/>}/>
         </Route>

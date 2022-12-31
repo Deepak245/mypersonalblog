@@ -1,7 +1,7 @@
 import {SIGN_IN_SUCCESS,SIGN_IN_BEGIN,CLEAR_ERRORS,SIGN_IN_FAIL,DISPLAY_ALERT} from "../Constants/authConstants"
 
 
-export const loginReducer =(state={user:{},alertdet:{}},action)=>{
+export const loginReducer =(state={user:{}},action)=>{
     switch (action.type){
         case SIGN_IN_BEGIN:
             return {
@@ -9,25 +9,25 @@ export const loginReducer =(state={user:{},alertdet:{}},action)=>{
                 isAuthenticated:false
             }
         case SIGN_IN_SUCCESS:
+            // console.log(action.payload.email    )
+            
             return {
-                ...state,
+                ...state,   
                 isAuthenticated:true,
-                user:action.payload
+                user:action.payload.email,
+                showAlert:false,
+                error:null
             }
         case SIGN_IN_FAIL:
-               
+            localStorage.setItem("user", ""); 
             return {
             ...state,
             
             isAuthenticated: false,
-            user: null,
+            user: {},
             error: action.payload,
             };
-        case CLEAR_ERRORS:
-            return {
-                ...state,
-                error: null,
-            };
+        
         case DISPLAY_ALERT:
                 return {
                     ...state,
@@ -35,6 +35,14 @@ export const loginReducer =(state={user:{},alertdet:{}},action)=>{
                     alertType:"error",
     
                 }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                showAlert:false,
+                    alertType:"",
+                    user:{},
+                    error:null
+            }
         default:
             return state;
     }

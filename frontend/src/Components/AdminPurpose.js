@@ -1,32 +1,32 @@
 import React, { useState } from 'react'
 import { Button,Grid, InputLabel,TextField, Divider } from '@mui/material'
-import { makeStyles, ThemeProvider } from "@mui/styles"
+// import { makeStyles, ThemeProvider } from "@mui/styles"
 import { createTheme } from '@mui/material/styles';
 
 
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../Actions/letsThinkAction";
 
-const useStyles = makeStyles({
-    title:{flexGrow:1},
-    tagline:{
-      fontSize:'1rem',
-      '@media (min-width:600px)': {
-        fontSize: '1.5rem',
-      },
-      justifyContent:"right",
-      fontFamily:'Montserrat',
-      InputLabelDet:{
+// const useStyles = makeStyles({
+//     title:{flexGrow:1},
+//     tagline:{
+//       fontSize:'1rem',
+//       '@media (min-width:600px)': {
+//         fontSize: '1.5rem',
+//       },
+//       justifyContent:"right",
+//       fontFamily:'Montserrat',
+//       InputLabelDet:{
        
-        color:'red'
-      }
-    }
-  })
+//         color:'red'
+//       }
+//     }
+//   })
 
   
 
 const AdminPurpose = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
    const [postContent,setPostContent]=useState("");
    const [postTitle,setPostTitle]=useState("");
    

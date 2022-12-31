@@ -61,6 +61,7 @@ const Header = () => {
       <AppBar/>
       <Divider variant="middle" />
       <Toolbar className={classes.tagline}>EXPRESSING OUR THOUGHTS THROUGH WORDS</Toolbar>
+      
       <Divider variant="middle" sx={{bgcolor:'red'}}/>
       <br/>
       

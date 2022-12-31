@@ -32,6 +32,7 @@ const LetsThink = () => {
   // console.log(state.postDetails);
   console.log(loading);
   useEffect(() => {
+    localStorage.setItem("user", ""); 
     dispatch(getAllBlogDetails());
   }, [dispatch]);
 
