@@ -11,18 +11,21 @@ export const signin =(email,password)=>async(dispatch)=>{
         dispatch({ type: SIGN_IN_BEGIN })
         
         const {data} = await axios.post("/api/v1/auth/login",{email,password},config)
-        console.log(data)
+        // console.log(data)
+        localStorage.setItem("user", JSON.stringify(data.user.email));
         dispatch({
           type:SIGN_IN_SUCCESS,
           payload:data.user
         })
       } catch (error) {
-        console.log(error)
+        // console.log(error)
+        localStorage.setItem("user", {});
         dispatch({
             type: SIGN_IN_FAIL,
             payload: error.response.data.msg,
             
           });
+
         dispatch({type:DISPLAY_ALERT})
       }
 }

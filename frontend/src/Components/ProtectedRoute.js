@@ -4,12 +4,13 @@ import {signin} from "../Actions/authAction";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({children}) => {
-    const {isAuthenticated,user,error,showAlert,alertType} = useSelector(state=>state.loginDetails)
-    console.log(isAuthenticated)
+  const user = localStorage.getItem("user");
+    const {isAuthenticated,error,showAlert,alertType} = useSelector(state=>state.loginDetails)
+    console.log(user)
     // if ( Object.keys(user).length === 0|| {}) {
     //     return <Navigate to="/landing" />;
     //   }
-    if ( isAuthenticated) {
+    if ( !user) {
       return <Navigate to="/landing" />;
     }
       return children;

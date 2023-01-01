@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import AlertComp from "./AlertComp"
 import { useDispatch, useSelector } from "react-redux";
@@ -32,16 +32,17 @@ const Landing = () => {
 
     const {isAuthenticated,user,error,showAlert,alertType} = useSelector(state=>state.loginDetails)
     
-
-    const onHandleLogin=()=>{
-      
-      dispatch(signin(email,password));
-      // localStorage.setItem("user", JSON.stringify(user));
-      // console.log("isauthenticated"+isAuthenticated)
+    useEffect(()=>{
       if(isAuthenticated){
-        setOpen(false);
-      navigate("/")
+          
+          setOpen(false);
+          navigate("/")
       }
+    },[dispatch,isAuthenticated])
+    const onHandleLogin=(e)=>{
+      e.preventDefault();
+      dispatch(signin(email,password));
+      
       
      
     }
