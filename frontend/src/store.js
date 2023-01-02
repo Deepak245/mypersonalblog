@@ -14,15 +14,21 @@ import {
   updateLikesReducer
 } from "./Reducers/letsThinkReducer";
 
+import {movieReviewsReducer,getMovieReviewDetailsReducer,updateReviewLikesReducer} from "./Reducers/movieReducer"
+
 const reducer = combineReducers({
   postDetails: letsThinkDetailsReducer,
   singlePostDetails: getPostDetailsReducer,
   likesDetails:updateLikesReducer,
+  reviewDetails:movieReviewsReducer,
+  singleReviewDetails:getMovieReviewDetailsReducer,
+  reviewLikeDetails:updateReviewLikesReducer,
   loginDetails:loginReducer
 });
 const middleWare = [thunk];
 
-const intitalState = {};
+// const intitalState = {user:localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")): {}};
+const intitalState ={}
 const store = createstore(
   reducer,
   intitalState,

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Button,Grid, InputLabel,TextField, Divider } from '@mui/material'
 // import { makeStyles, ThemeProvider } from "@mui/styles"
-import { createTheme } from '@mui/material/styles';
 
 
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch} from "react-redux";
 import { createPost } from "../Actions/letsThinkAction";
+import {createReview} from "../Actions/movieAction";
 
 // const useStyles = makeStyles({
 //     title:{flexGrow:1},
@@ -29,6 +30,8 @@ const AdminPurpose = () => {
   // const classes = useStyles();
    const [postContent,setPostContent]=useState("");
    const [postTitle,setPostTitle]=useState("");
+   const [reviewContent,setReviewContent]=useState("");
+   const [movieTitle,setMovieTitle]=useState("");
    
     const dispatch = useDispatch();
   const onHandleCreatePost=()=>{
@@ -38,6 +41,15 @@ const AdminPurpose = () => {
     
     dispatch(createPost(postData))
     alert("Post Created Successfully")
+  }
+
+  const onHandleCreateMovieReview=()=>{
+    const title=movieTitle;
+    const content=reviewContent;
+    const reviewData = {title,content}
+    
+    dispatch(createReview(reviewData))
+    alert("Review Created Successfully")
   }
   
   return (
@@ -88,20 +100,25 @@ const AdminPurpose = () => {
           required
           id="outlined-required"
           label="Required"
-          defaultValue="Enter Title of Movie"
+          name='movietitle'
+          
+          onChange={(e)=>setMovieTitle(e.target.value)}
+          value={movieTitle}
         />
      </Grid>
      <br/>
      <Grid container={true}>
-     <InputLabel style={{color:'black'}} >Enter Review of Movie Content:</InputLabel>
+     <InputLabel style={{color:'black'}} >Enter Review of Movie Content*:</InputLabel>
      <TextField sx={{width:'500px'}}
           required
           id="outlined-required"
           label="Required"
-          defaultValue="Enter Content of Review"
+          name='reviewcontent'
+          onChange={(e)=>setReviewContent(e.target.value)}
+          value={reviewContent}
         />
      </Grid>
-     <Button variant="contained">Create Review</Button>
+     <Button variant="contained" onClick={onHandleCreateMovieReview}>Create Review</Button>
     
     {/* </Stack> */}
     </>

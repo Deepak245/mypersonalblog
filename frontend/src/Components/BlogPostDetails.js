@@ -1,13 +1,12 @@
-import React, { Fragment, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostDetails,updateLikesCount } from "../Actions/letsThinkAction";
-import {GrLike,GrDislike} from "react-icons/gr"
-import Header from "./Header";
-import Loader from "./Loader";
-import CustomeScrollBar from "./CustomeScrollBar";
 
-import {Card, CardActionArea, CardContent, Grid,Typography  } from "@mui/material";
+
+import {Card,  CardContent, Grid,Typography ,Button,Box } from "@mui/material";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import {useStylesBlogDetailsPage} from "../WrapperStyles/BlogDetailStyle";
 
 // const BlogPostDetails = () => {
@@ -61,6 +60,24 @@ const BlogPostDetails = () => {
       
         <Card >
           <CardContent>
+              <Box
+                m={0.5}
+                sx={{mt: 2}}
+                display="flex"
+                justifyContent="space-between"
+                alignItems="flex-start"
+               
+              >
+               
+                <Button color="primary" variant="contained" sx={{ height: 30 }} onClick={()=>onHandleIncreaseLike(id)} startIcon={<ThumbUpIcon /> }>
+                  Like :
+                  <Typography>{Object && Object.keys(likesPostData).length === 0?postData.postLiked:likesPostData.postLiked}</Typography>
+                  
+                </Button>
+                <Button color="primary"  variant="contained"  sx={{ height: 30 }}  onClick={()=>onHandleIncreaseDislike(id)} startIcon={<ThumbDownIcon />}>
+                  DisLke : <Typography>{Object.keys(likesPostData).length === 0?postData.postDisLiked:likesPostData.postDisLiked}</Typography>
+                </Button>
+              </Box>
           <Typography align="center" color="common.black" gutterBottom>
             <strong>
            {postData.title}

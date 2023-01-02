@@ -9,6 +9,7 @@ import "express-async-errors"
 // routers import
 import authRouter from "./backend/routes/authRoutes.js";
 import postRouter from "./backend/routes/postRoutes.js";
+import movieRouter from "./backend/routes/movieRoutes.js"
 
 // Error Import
 import "express-async-errors"
@@ -52,6 +53,7 @@ app.use(mongoSanitizer());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/post", postRouter);
+app.use("/api/v1/movie", movieRouter);
 
 
 if(process.env.ENV === "PROD"){

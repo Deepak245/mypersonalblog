@@ -6,7 +6,7 @@ const BlogPost = (blogData) => {
   // console.log(blogData);
   return (
     <>
-      {/* {blogData.blogData.title} */}
+      
       
       <Link href={`/blogdetails/${blogData.blogData._id}`} underline="none" color="#fff">
         {blogData.blogData.title}

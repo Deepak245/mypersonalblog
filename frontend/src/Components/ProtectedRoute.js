@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 const ProtectedRoute = ({children}) => {
   const user = localStorage.getItem("user");
     const {isAuthenticated,error,showAlert,alertType} = useSelector(state=>state.loginDetails)
-    console.log(user)
+    // console.log(user)
     // if ( Object.keys(user).length === 0|| {}) {
     //     return <Navigate to="/landing" />;
     //   }

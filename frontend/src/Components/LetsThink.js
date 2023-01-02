@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogDetails } from "../Actions/letsThinkAction";
 
 import { Link } from "react-router-dom";
-import {Grid,styled ,Paper,CircularProgress,Button } from "@mui/material";
+import {Grid,styled ,Paper,CircularProgress,Button,Stack} from "@mui/material";
 
 
 const LetsThink = () => {
@@ -30,7 +30,7 @@ const LetsThink = () => {
     (state) => state.postDetails
   );
   // console.log(state.postDetails);
-  console.log(loading);
+  // console.log(loading);
   useEffect(() => {
    
     dispatch(getAllBlogDetails());
@@ -61,12 +61,18 @@ const LetsThink = () => {
     // </div>
     <Fragment>
     
-    {loading?<Fragment><CircularProgress /></Fragment>:<Fragment>
+    {loading?<Fragment>
+      {/* <CircularProgress /> */}
+      <Stack alignItems="center">
+        <CircularProgress />
+      </Stack>
+      </Fragment>:
+      <Fragment>
     
     
     <Grid container spacing={1}>
     {allblogs?.map((blogdetails) => (
-       
+        
         
         <Grid item xs={12} md={8} lg={12} key={blogdetails._id}>
         <Item><BlogPost key={blogdetails._id} blogData={blogdetails} /></Item>

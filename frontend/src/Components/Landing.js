@@ -36,7 +36,7 @@ const Landing = () => {
       if(isAuthenticated){
           
           setOpen(false);
-          navigate("/")
+          navigate("/admin")
       }
     },[dispatch,isAuthenticated])
     const onHandleLogin=(e)=>{
