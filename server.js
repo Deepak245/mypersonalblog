@@ -60,7 +60,7 @@ if(process.env.ENV === "PROD"){
 // un comment it before going to prod.
 app.get("/*", (req, res) => {
   // res.sendFile(path.resolve(__dirname,"../frontend/build","index.html"))
-  res.sendFile(path.resolve(__dirname,"./frontend/build","index.html"))
+  res.sendFile(path.resolve(__dirname,"./frontend/build","/index.html"))
  });
 }
 
